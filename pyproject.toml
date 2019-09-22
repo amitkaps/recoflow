@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "recoflow"
+version = "0.0.3"
+description = "Deep Recommender System for Humans"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/amitkaps/recoflow"
+authors = [
+  "Amit Kapoor <amitkaps@gmail.com>", 
+  "Bargava Subramanian <bargava@gmail.com>"
+  ]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+numpy = "^1.17"
+scikit-learn = "^0.21.3"
+pandas = "^0.25.1"
+altair = "^3.2"
+requests = "^2.22"
+matplotlib = "^3.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

@@ -16,7 +16,6 @@ Output -> Working Recsys
 - Model Building
 	- Embedding
 		- Bi-linear
-		-
 	- Architectures
 		- 2vec models
 		- Factorisation Model: Explicit, Implicit

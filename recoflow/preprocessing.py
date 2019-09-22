@@ -15,29 +15,31 @@ def EncodeUserItem(df, user_col, item_col, rating_col, time_col):
     
     Returns: 
         encoded_df (pd.DataFrame): Modifed dataframe with the users and items index
+        n_users (int): number of users
+        n_items (int): number of items
         user_encoder (sklearn.LabelEncoder): Encoder for users.
         item_encoder (sklearn.LabelEncoder): Encoder for items.
     """
     
-    encoded_df = df.copy()
+    interaction = df.copy()
     
     user_encoder = LabelEncoder()
-    user_encoder.fit(encoded_df[user_col].values)
+    user_encoder.fit(interaction[user_col].values)
     n_users = len(user_encoder.classes_)
     
     item_encoder = LabelEncoder()
-    item_encoder.fit(encoded_df[item_col].values)
+    item_encoder.fit(interaction[item_col].values)
     n_items = len(item_encoder.classes_)
 
-    encoded_df["USER"] = user_encoder.transform(encoded_df[user_col])
-    encoded_df["ITEM"] = item_encoder.transform(encoded_df[item_col])
+    interaction["USER"] = user_encoder.transform(interaction[user_col])
+    interaction["ITEM"] = item_encoder.transform(interaction[item_col])
     
-    encoded_df.rename({rating_col: "RATING", time_col: "TIMESTAMP"}, axis=1, inplace=True)
+    interaction.rename({rating_col: "RATING", time_col: "TIMESTAMP"}, axis=1, inplace=True)
     
     print("Number of users: ", n_users)
     print("Number of items: ", n_items)
     
-    return encoded_df, user_encoder, item_encoder
+    return interaction, n_users, n_items, user_encoder, item_encoder
 
 
 def RandomSplit (df, ratios, shuffle=False):

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "recoflow"
-version = "0.0.3"
+version = "0.0.4"
 description = "Deep Recommender System for Humans"
 license = "MIT"
 readme = "README.md"
@@ -18,6 +18,7 @@ pandas = "^0.25.1"
 altair = "^3.2"
 requests = "^2.22"
 matplotlib = "^3.1"
+keras = "^2.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"

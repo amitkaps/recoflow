@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "recoflow"
-version = "0.0.4"
+version = "0.0.7"
 description = "Deep Recommender System for Humans"
 license = "MIT"
 readme = "README.md"
@@ -11,7 +11,7 @@ authors = [
   ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.6"
 numpy = "^1.17"
 scikit-learn = "^0.21.3"
 pandas = "^0.25.1"

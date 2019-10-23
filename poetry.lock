@@ -404,8 +404,8 @@ version = "0.6.0"
 more-itertools = "*"
 
 [metadata]
-content-hash = "20468b174393b0d85305b6aa4c3956ad502b6519c6c7a58fb80a08eedac04e00"
-python-versions = "^3.7"
+content-hash = "151beed0c4dca936616ecddcac173bff1121f19631ce9cd854f2c1a126b163c7"
+python-versions = "^3.6"
 
 [metadata.hashes]
 altair = ["9abe13d88a3694857138ac61512c4f873f762f432cf82623eea4700d2a531525", "bd8f42b487ffb67bdb1d2ae7970df69c0801431c9201742599525037bc8bd56d"]

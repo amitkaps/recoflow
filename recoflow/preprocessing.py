@@ -157,3 +157,22 @@ def StratifiedSplit (df, ratios, by="USER"):
     splits_list = _splitter(df, ratios, by, False)
 
     return splits_list
+
+
+def GetGenre(items, item_encoder):
+    cols = ['movie_id', 'genre_unknown', 'Action', 'Adventure',
+       'Animation', 'Children', 'Comedy', 'Crime', 'Documentary', 'Drama',
+       'Fantasy', 'FilmNoir', 'Horror', 'Musical', 'Mystery', 'Romance',
+       'SciFi', 'Thriller', 'War', 'Western']
+    df_genre = items[cols].copy()
+    
+    df_genre["ITEM"] = item_encoder.transform(df_genre.movie_id)
+    df_genre["genre"] = df_genre[cols[1:]].apply(lambda x: ''.join(x.map(str)), axis=1)
+    df_genre["genre_int"] = df_genre.genre.apply(int, args=(2,))
+    df_genre.drop(cols[1:], axis=1, inplace=True)
+    df_genre.drop_duplicates(inplace=True)
+    df_genre.sort_values("ITEM", inplace=True)
+    
+    df_genre["genre_label"] = LabelEncoder().fit_transform(df_genre.genre)
+    
+    return df_genre

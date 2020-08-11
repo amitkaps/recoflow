@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "vega": "./vega.js",
+    "vega-embed": "./vega-embed.js",
+    "vega-lite": "./vega-lite.js"
+  }
+}

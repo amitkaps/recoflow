@@ -1,0 +1,18 @@
+title: RecoFlow
+description: Deep Recommendation System for Humans
+author: Amit Kapoor
+
+twitter:
+  username: amitkaps
+
+url: http://amitkaps.com/recoflow
+permalink: pretty
+port: 4010
+
+sass:
+  style: compressed
+
+collections:
+  pages:
+    output: True
+

@@ -1,0 +1,48 @@
+---
+layout: 
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Amit Kapoor">
+  
+  <!-- Import TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+  <!-- Import tfjs-vis -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+
+  body {
+    max-width: 40em;
+    margin: 0 auto;
+  }
+  p {
+    font-family: Georgia, serif;
+    line-height: 1.5;
+    max-width: 33em;
+  }
+  </style>
+
+<head>
+
+<body>
+<main>
+  <article>
+    <h1 class="title">{{ page.title }} </h1>
+    <p class="tagline">{{ page.tagline }}</p>
+    {{ content }}
+  </article>
+</main>
+
+<footer>
+  Handcrafted by <a href="https://amitkaps.com">@amitkaps</a> &amp; <a href="https://bargava.com">@bargava</a>
+</footer>
+</body>
+</html>

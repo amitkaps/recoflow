@@ -1,11 +1,17 @@
 import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_squared_error, mean_absolute_error
-from .utils import _UserItemCrossJoin, _FilterBy, _GetTopKItems, _GetHitDF, _MergeRatingTruePred
+from .utils import (
+    _UserItemCrossJoin,
+    _FilterBy,
+    _GetTopKItems,
+    _GetHitDF,
+    _MergeRatingTruePred,
+)
 
 
 def MeanSquaredError(rating_true, rating_pred):
-  """Calculate Mean Squared Error
+    """Calculate Mean Squared Error
   
   Params:
   rating_true (pd.DataFrame): Ground Truth Ratings. There should be no duplicate
@@ -15,15 +21,15 @@ def MeanSquaredError(rating_true, rating_pred):
   float: Mean Squared Error
   """
 
-  y_true, y_pred = _MergeRatingTruePred(
-    rating_true=rating_true, 
-    rating_pred=rating_pred)
-  
-  return mean_squared_error(y_true, y_pred)
+    y_true, y_pred = _MergeRatingTruePred(
+        rating_true=rating_true, rating_pred=rating_pred
+    )
+
+    return mean_squared_error(y_true, y_pred)
 
 
 def RootMeanSquaredError(rating_true, rating_pred):
-  """Calculate Root Mean Squared Error
+    """Calculate Root Mean Squared Error
   
   Params:
   rating_true (pd.DataFrame): Ground Truth Ratings. There should be no duplicate
@@ -33,15 +39,15 @@ def RootMeanSquaredError(rating_true, rating_pred):
   float: Root Mean Squared Error
   """
 
-  y_true, y_pred = _MergeRatingTruePred(
-    rating_true=rating_true, 
-    rating_pred=rating_pred)
-  
-  return np.sqrt(mean_squared_error(y_true, y_pred))
+    y_true, y_pred = _MergeRatingTruePred(
+        rating_true=rating_true, rating_pred=rating_pred
+    )
+
+    return np.sqrt(mean_squared_error(y_true, y_pred))
 
 
 def MeanAbsoluteError(rating_true, rating_pred):
-  """Calculate Mean Absolute Error
+    """Calculate Mean Absolute Error
   
   Params:
   rating_true (pd.DataFrame): Ground Truth Ratings. There should be no duplicate
@@ -51,11 +57,11 @@ def MeanAbsoluteError(rating_true, rating_pred):
   float: Mean Absolute Error
   """
 
-  y_true, y_pred = _MergeRatingTruePred(
-    rating_true=rating_true, 
-    rating_pred=rating_pred)
-  
-  return mean_absolute_error(y_true, y_pred)
+    y_true, y_pred = _MergeRatingTruePred(
+        rating_true=rating_true, rating_pred=rating_pred
+    )
+
+    return mean_absolute_error(y_true, y_pred)
 
 
 def PrecisionK(rating_true, rating_pred, k=5):
@@ -71,7 +77,7 @@ def PrecisionK(rating_true, rating_pred, k=5):
     """
 
     df_hit, df_hit_count, n_users = _GetHitDF(rating_true, rating_pred, k)
-    
+
     if df_hit.shape[0] == 0:
         return 0.0
 
@@ -98,7 +104,6 @@ def RecallK(rating_true, rating_pred, k=5):
     return (df_hit_count["hit"] / df_hit_count["actual"]).sum() / n_users
 
 
-
 def NDCGK(rating_true, rating_pred, k=5):
     """Calculate NDCG at K
     
@@ -111,7 +116,7 @@ def NDCGK(rating_true, rating_pred, k=5):
     float: NDCG at K
     """
     df_hit, df_hit_count, n_users = _GetHitDF(rating_true, rating_pred, k)
-    
+
     if df_hit.shape[0] == 0:
         return 0.0
 
@@ -143,18 +148,21 @@ def MeanAveragePrecisionK(rating_true, rating_pred, k=5):
     float: Mean Average Precision at K
     """
     df_hit, df_hit_count, n_users = _GetHitDF(rating_true, rating_pred, k)
-    
+
     if df_hit.shape[0] == 0:
         return 0.0
 
     # Calculate Reciprocal Rank
     df_hit_sorted = df_hit.copy()
-    df_hit_sorted["rRank"] = (df_hit_sorted.groupby("USER").cumcount() + 1) / df_hit_sorted["rank"]
+    df_hit_sorted["rRank"] = (
+        df_hit_sorted.groupby("USER").cumcount() + 1
+    ) / df_hit_sorted["rank"]
     df_hit_sorted = df_hit_sorted.groupby("USER").agg({"rRank": "sum"}).reset_index()
 
     # Calculate Mean Averate Precision
     df_merge = pd.merge(df_hit_sorted, df_hit_count, on="USER")
     return (df_merge["rRank"] / df_merge["actual"]).sum() / n_users
+
 
 def MeanReciprocalRankK(rating_true, rating_pred, k=5):
     """Calculate Mean Reciprocal Rank at K
@@ -168,13 +176,15 @@ def MeanReciprocalRankK(rating_true, rating_pred, k=5):
     float: Mean Reciprocal Rank at K
     """
     df_hit, df_hit_count, n_users = _GetHitDF(rating_true, rating_pred, k)
-    
+
     if df_hit.shape[0] == 0:
         return 0.0
 
     # Calculate Reciprocal Rank
     df_hit_sorted = df_hit.copy()
-    df_hit_sorted["rRank"] = (df_hit_sorted.groupby("USER").cumcount() + 1) / df_hit_sorted["rank"]
+    df_hit_sorted["rRank"] = (
+        df_hit_sorted.groupby("USER").cumcount() + 1
+    ) / df_hit_sorted["rank"]
     df_hit_sorted = df_hit_sorted.groupby("USER").agg({"rRank": "sum"}).reset_index()
 
     return df_hit_sorted["rRank"].sum() / (n_users * k)
@@ -190,17 +200,19 @@ def RatingMetrics(rating_true, rating_pred):
     Returns:
     rating_metrics (pd.DataFrame): Ratings metrics MAE, MSE, RMSE
     """
-    
+
     MSE = MeanSquaredError(rating_true, rating_pred)
     RMSE = RootMeanSquaredError(rating_true, rating_pred)
     MAE = MeanAbsoluteError(rating_true, rating_pred)
-    
-    rating_metrics = pd.DataFrame({
-        "MSE": [float("{0:.4f}".format(MSE))],
-        "RMSE": [float("{0:.4f}".format(RMSE))],
-        "MAE": [float("{0:.4f}".format(MAE))]
-    })
-    
+
+    rating_metrics = pd.DataFrame(
+        {
+            "MSE": [float("{0:.4f}".format(MSE))],
+            "RMSE": [float("{0:.4f}".format(RMSE))],
+            "MAE": [float("{0:.4f}".format(MAE))],
+        }
+    )
+
     return rating_metrics
 
 
@@ -215,20 +227,22 @@ def RankingMetrics(rating_true, rating_pred, k=5):
     Returns:
     ranking_metrics (pd.DataFrame): Ranking metrics MAE, MSE, RMSE
     """
-    
+
     Precision = PrecisionK(rating_true, rating_pred, k)
     Recall = RecallK(rating_true, rating_pred, k)
     MAP = MeanAveragePrecisionK(rating_true, rating_pred, k)
     MRR = MeanReciprocalRankK(rating_true, rating_pred, k)
     NDCG = NDCGK(rating_true, rating_pred, k)
-    
-    ranking_metrics = pd.DataFrame({
-        "k": [k],
-        "Precision@k": [float("{0:.4f}".format(Precision))],
-        "Recall@k": [float("{0:.4f}".format(Recall))],
-        "MAP@k": [float("{0:.4f}".format(MAP))],
-        "MRR@k": [float("{0:.4f}".format(MRR))],
-        "NDCG@k": [float("{0:.4f}".format(NDCG))]
-    })
-    
+
+    ranking_metrics = pd.DataFrame(
+        {
+            "k": [k],
+            "Precision@k": [float("{0:.4f}".format(Precision))],
+            "Recall@k": [float("{0:.4f}".format(Recall))],
+            "MAP@k": [float("{0:.4f}".format(MAP))],
+            "MRR@k": [float("{0:.4f}".format(MRR))],
+            "NDCG@k": [float("{0:.4f}".format(NDCG))],
+        }
+    )
+
     return ranking_metrics

@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="Amit Kapoor">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Amit Kapoor" />
 
-<title>
-  {% if page.title == "RecoFlow" %}
-    {{ page.title }} | {{ page.tagline }}
-  {% else %}
-    {{ page.title }} | RecoFlow
-  {% endif %}
-</title>
+    <title>
+      {% if page.title == "RecoFlow" %} {{ page.title }} | {{ page.tagline }} {%
+      else %} {{ page.title }} | RecoFlow {% endif %}
+    </title>
 
-<link rel="shortcut icon" href="/favicon.ico"/>
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-{% capture styles %}
-  {% include styles.css %}
-{% endcapture %}
+    {% capture styles %} {% include styles.css %} {% endcapture %}
 
-<style>
-  {{ styles | scssify }}
-</style>
+    <style>
+      {{ styles | scssify }}
+    </style>
+  </head>
 
-</head>
-
-<body>
-
-<header>
-  <nav class="nav-bar">
-    <ul class="nav-items">
-      <a class="name nav-links" href="/">RECOFlow</a> 
-      <a class="nav-links" href="/guides">GUIDE</a> 
-      <a class="nav-links" href="/api">API</a>  
-      <a class="nav-links" href="/about">ABOUT</a>  
-    </ul>
-  </nav>
-</header>
+  <body>
+    <header>
+      <nav class="nav-bar">
+        <ul class="nav-items">
+          <a class="name nav-links" href="{site.baseurl} /">RECOFlow</a>
+          <a class="nav-links" href="/guides">GUIDE</a>
+          <a class="nav-links" href="/api">API</a>
+          <a class="nav-links" href="/about">ABOUT</a>
+        </ul>
+      </nav>
+    </header>
+  </body>
+</html>

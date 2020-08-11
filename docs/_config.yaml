@@ -6,6 +6,7 @@ twitter:
   username: amitkaps
 
 url: http://amitkaps.com/recoflow
+baseurl: /artistry
 permalink: pretty
 port: 4010
 

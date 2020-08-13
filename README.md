@@ -1,2 +1,3 @@
-# recoflow
-Deep Recommender System for Humans
+# RecoFlow
+
+Recommender System for Humans

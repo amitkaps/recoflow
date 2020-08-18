@@ -20,7 +20,9 @@ Datasets
 - From Files
 - From DB / Parquet (Arrow-based) _Later_
 
-### Module: Encode
+### Module: Encoder
+
+#### Sub Module: Feature Encoder
 
 Features Encoders
 
@@ -40,12 +42,17 @@ Features Encoders
 - Transform Functions
 - Cross-Products Functions
 - Embedding Transformers
+- Compression of Embedding
+  - Composition Embedding (for number of vectors)
+  - Mixed Dimension Embedding (for dimensions of vector)
 
 User & Item Features
 
 - Domain Features
 - ??
 - ??
+
+#### Sub Module: Interaction Encoder
 
 Interaction / Signal Encoders:
 
@@ -55,6 +62,8 @@ Interaction / Signal Encoders:
 - Signal Discrimination and Rasch-Andrich Thresholds (Adaptive Modelling)
 - Negative Sampling
 - ...
+
+### Sub Module: Data Splitter
 
 Splitting:
 
@@ -81,6 +90,11 @@ Splitting:
 - Ensemble Models:
   - Sequential (Cascade, Feature Augmentation)
   - Parallel (Weighted, Switching)
+
+### Module: Model Tuning
+
+- Keras Tuner
+- ...
 
 ### Module: Evaluate, Intrepret, Explain
 

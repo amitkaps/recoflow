@@ -11,17 +11,17 @@ authors = [
   ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
-numpy = "^1.17"
-scikit-learn = "^0.22"
-pandas = "^1.0"
-altair = "^4.0"
-requests = "^2.22"
-matplotlib = "^3.1"
+python = "^3.8"
+numpy = "^1.18"
+scikit-learn = "^0.23"
+pandas = "^1.1"
+altair = "^4.1"
+requests = "^2.24"
+matplotlib = "^3.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
-tensorflow = "^2.1"
+tensorflow = "^2.3"
 jupyterlab = "^1.2"
 
 [build-system]

@@ -14,6 +14,14 @@
 
 ## Next Steps
 
+- Reorganise Folders
+
+  - docs
+  - python
+  - js
+  - rest...
+  - README
+
 - Start Library
 
   - Python

@@ -41,11 +41,18 @@ Features Encoders
 - Cross-Products Functions
 - Embedding Transformers
 
+User & Item Features
+
+- Domain Features
+- ??
+- ??
+
 Interaction / Signal Encoders:
 
 - Explicit (Strong Signal)
 - Implicit (Weak Signal)
 - Implicit Weighted Measure
+- Signal Discrimination and Rasch-Andrich Thresholds (Adaptive Modelling)
 - Negative Sampling
 - ...
 
@@ -63,11 +70,17 @@ Splitting:
 - Factorisation Model with Features (Explicit / Implicit)
 - Neural Models (NCF, DMF)
 - Ranking Models: Learning to Rank
-- Sequence Models:
+- Context Models:
+  - Spatial
+  - Temporal
+  - Social
 - Graph Models
+  - Knowledge Graphs
+  - Curated Graphs
+  - Domain Modelling
 - Ensemble Models:
-  - Sequential
-  - Parallel
+  - Sequential (Cascade, Feature Augmentation)
+  - Parallel (Weighted, Switching)
 
 ### Module: Evaluate, Intrepret, Explain
 
@@ -95,6 +108,25 @@ Splitting:
 - Given a user, give ranked items
 - Given an item, give ranked items
 
+### Module: System Design
+
+- Interaction /Signal Update
+
+  - New Items?
+  - New User?
+  - Existing User + New Signal
+  - Learning New Preference -> Explore vs. Exploit
+
+- Update for Objectives
+
+  - Margin Optimisation
+  - Weights? Discovery -> Novelty
+
+- Set of Models
+  - Generation Model
+  - Ranking Model
+  - Rules / Re-Ranking Model
+
 ### Module: Serve
 
 - Orchestrate
@@ -105,10 +137,6 @@ Splitting:
 
 ## Additiona points to Cover
 
-- Ensemble
-- Generation / Ranking / Re-Ranking
-- Twin Tower
 - Full Page Optimisation
-- A/ B Testing
 - UI linkage
 - Loop --- How to re-train, Add one new user or item ...

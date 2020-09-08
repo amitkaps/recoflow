@@ -1,5 +1,16 @@
+# Update this for loading 
+# Movie Lens -> Recommendation
+# Hacker News -> Recommendation 
+
 import numpy as np
 import pandas as pd
+import requests, zipfile, io
+from utils import create_directory
+
+import typing
+
+
+
 
 
 def SampleData(users, items, ratings):

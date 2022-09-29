@@ -27,7 +27,7 @@
     "snowpack": "^1.1.4"
   },
   "dependencies": {
-    "vega": "^5.9.1",
+    "vega": "^5.22.1",
     "vega-embed": "^6.2.2",
     "vega-lite": "^4.1.1"
   }
